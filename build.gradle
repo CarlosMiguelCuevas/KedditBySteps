@@ -40,4 +40,5 @@ ext {
     runnerVersion = '1.0.1'
     espressoVersion = '3.0.1'
     constraintLayoutVersion = '1.0.2'
+    picassoVersion = '2.5.2'
 }

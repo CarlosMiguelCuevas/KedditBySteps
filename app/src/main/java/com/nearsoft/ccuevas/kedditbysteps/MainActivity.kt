@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import kotlinx.android.synthetic.main.activity_main.*
 
 //import kotlinx.android.synthetic.main.activity_main.*
 
@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
         if (savedInstanceState == null) {
@@ -32,7 +31,7 @@ class MainActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    fun clearBackStack() {
+    private fun clearBackStack() {
         val manager = supportFragmentManager
         if (manager.backStackEntryCount > 0) {
             val first = manager.getBackStackEntryAt(0)
