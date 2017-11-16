@@ -8,7 +8,7 @@ import com.nearsoft.ccuevas.kedditbysteps.commons.extencions.inflate
 /**
  * Created by ccuevas on 11/15/17.
  */
-class LoadingDelegateAdapter : ViewtypeDelegateAdapter{
+class LoadingDelegateAdapter : ViewTypeDelegateAdapter {
     override fun onCreateViewHolder(parent: ViewGroup) = LoadingViewHolder(parent)
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: ViewType) {}
