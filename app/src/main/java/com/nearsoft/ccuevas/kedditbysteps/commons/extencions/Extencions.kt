@@ -3,6 +3,7 @@
 package com.nearsoft.ccuevas.kedditbysteps.commons.extencions
 
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,8 @@ fun ImageView.loadImage(imageUrl: String) {
     if (TextUtils.isEmpty(imageUrl)) {
         Picasso.with(context).load(R.mipmap.ic_launcher).into(this)
     } else {
+        Picasso.with(context).isLoggingEnabled()
+        Log.d("URL", imageUrl)
         Picasso.with(context).load(imageUrl).into(this)
     }
 }

@@ -16,6 +16,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             postprocessing {
@@ -24,7 +25,12 @@ android {
                 obfuscate false
                 optimizeCode false
                 proguardFile 'proguard-rules.pro'
+                buildConfigField("String", "API_URL",  "\"https://www.reddit.com\"")
+
             }
+        }
+        debug {
+            buildConfigField("String", "API_URL",  "\"https://www.reddit.com\"")
         }
     }
 }
@@ -39,6 +45,9 @@ dependencies {
     implementation "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxAndroidVersion"
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.gsonVersion"
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofitAdapterVersion"
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.ext.runnerVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
