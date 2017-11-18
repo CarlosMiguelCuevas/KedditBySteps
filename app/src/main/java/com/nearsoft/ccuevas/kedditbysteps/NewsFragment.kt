@@ -6,6 +6,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.nearsoft.ccuevas.kedditbysteps.commons.InfiniteScrollListener
+import com.nearsoft.ccuevas.kedditbysteps.commons.RedditNews
 import com.nearsoft.ccuevas.kedditbysteps.commons.RxBaseFragment
 import com.nearsoft.ccuevas.kedditbysteps.commons.adapter.NewsAdapter
 import com.nearsoft.ccuevas.kedditbysteps.commons.extencions.inflate
@@ -18,6 +20,7 @@ class NewsFragment : RxBaseFragment() {
 
     private val newsList by lazy { news_list }
     private val newsManager by lazy { NewsManager() }
+    private var redditNews: RedditNews? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -28,8 +31,11 @@ class NewsFragment : RxBaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        val linearLayout = LinearLayoutManager(context)
         newsList.setHasFixedSize(true)
-        newsList.layoutManager = LinearLayoutManager(context)
+        newsList.layoutManager = linearLayout
+        newsList.clearOnScrollListeners()
+        newsList.addOnScrollListener(InfiniteScrollListener({requestNews()}, linearLayout))
 
         initAdapter()
 
@@ -39,12 +45,13 @@ class NewsFragment : RxBaseFragment() {
     }
 
     private fun requestNews() {
-        val subscription = newsManager.getNews()
+        val subscription = newsManager.getNews(redditNews?.after ?: "")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { retrievedNews ->
-                            (news_list.adapter as NewsAdapter).addNews(retrievedNews)
+                            redditNews = retrievedNews
+                            (news_list.adapter as NewsAdapter).addNews(retrievedNews.news)
                         },
                         { error ->
                             Snackbar.make(newsList, error.message ?: "", Snackbar.LENGTH_SHORT).show()

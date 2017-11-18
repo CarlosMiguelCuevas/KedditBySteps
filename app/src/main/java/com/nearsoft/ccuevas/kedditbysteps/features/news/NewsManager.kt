@@ -1,6 +1,7 @@
 package com.nearsoft.ccuevas.kedditbysteps.features.news
 
 import com.nearsoft.ccuevas.kedditbysteps.api.RestApi
+import com.nearsoft.ccuevas.kedditbysteps.commons.RedditNews
 import com.nearsoft.ccuevas.kedditbysteps.commons.RedditNewsItem
 import io.reactivex.Observable
 
@@ -9,15 +10,14 @@ import io.reactivex.Observable
  */
 class NewsManager(private val api: RestApi = RestApi()) {
 
-    fun getNews(limit: String = "10"): Observable<List<RedditNewsItem>> {
+    fun getNews(after: String, limit: String = "10"): Observable<RedditNews> {
 
-        return api.getNews("", limit)
-                .map { response -> response.data.children }
-                .map{ newsList ->
-                    newsList.map { newsItem -> with(newsItem.data) {
+        return api.getNews(after, limit)
+                .map {response -> response.data}
+                .map { redditNews -> RedditNews(redditNews.after ?: "", redditNews.before ?: "", redditNews.children.map { newsItem -> with(newsItem.data) {
                             RedditNewsItem(author, title, num_comments, created, thumbnail, url)
                         }
-                    }
+                    })
                 }
     }
 }
