@@ -8,7 +8,7 @@ import retrofit2.http.Query
 /**
  * Created by ccuevas on 11/17/17.
  */
-interface ReditApi {
+interface RedditApi {
     @GET("top.json")
     fun getTop(@Query("after") after: String, @Query("limit") limit: String): Observable<RedditNewsResponse>
 }

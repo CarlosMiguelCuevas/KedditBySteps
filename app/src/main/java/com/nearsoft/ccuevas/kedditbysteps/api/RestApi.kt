@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by ccuevas on 11/17/17.
  */
 class RestApi {
-    private val redditApi: ReditApi
+    private val redditApi: RedditApi
 
     init {
         val retrofit = Retrofit.Builder()
@@ -20,7 +20,7 @@ class RestApi {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
 
-        redditApi = retrofit.create(ReditApi::class.java)
+        redditApi = retrofit.create(RedditApi::class.java)
     }
 
     fun getNews(after: String, limit: String): Observable<RedditNewsResponse> {
