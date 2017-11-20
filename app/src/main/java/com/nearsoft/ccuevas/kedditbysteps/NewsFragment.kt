@@ -15,6 +15,7 @@ import com.nearsoft.ccuevas.kedditbysteps.features.news.NewsManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.news_fragment.*
+import javax.inject.Inject
 
 class NewsFragment : RxBaseFragment() {
 
@@ -22,9 +23,15 @@ class NewsFragment : RxBaseFragment() {
         private val KEY_REDDIT_NEWS = "KEY_REDDIT_NEWS"
     }
 
+    @Inject
+    lateinit var newsManager: NewsManager
     private val newsList by lazy { news_list }
-    private val newsManager by lazy { NewsManager() }
     private var redditNews: RedditNews? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        KedditApp.newsComponent.inject(this)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -38,10 +45,10 @@ class NewsFragment : RxBaseFragment() {
         val linearLayout = LinearLayoutManager(context)
 
         newsList.apply {
-           setHasFixedSize(true)
-           layoutManager = linearLayout
-           clearOnScrollListeners()
-           addOnScrollListener(InfiniteScrollListener({requestNews()}, linearLayout))
+            setHasFixedSize(true)
+            layoutManager = linearLayout
+            clearOnScrollListeners()
+            addOnScrollListener(InfiniteScrollListener({ requestNews() }, linearLayout))
         }
 
         initAdapter()
@@ -49,7 +56,7 @@ class NewsFragment : RxBaseFragment() {
         if (savedInstanceState != null && savedInstanceState.containsKey(KEY_REDDIT_NEWS)) {
             redditNews = savedInstanceState.get(KEY_REDDIT_NEWS) as RedditNews
             (newsList.adapter as NewsAdapter).clearAndroidNews(redditNews!!.news)
-        } else{
+        } else {
             requestNews()
         }
     }
@@ -59,7 +66,7 @@ class NewsFragment : RxBaseFragment() {
 
         val news = (newsList.adapter as NewsAdapter).getNews()
 
-        if(redditNews != null && news.size > 0){
+        if (redditNews != null && news.size > 0) {
             outState.putParcelable(KEY_REDDIT_NEWS, redditNews?.copy(news = news))
         }
     }

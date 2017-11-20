@@ -4,11 +4,14 @@ import com.nearsoft.ccuevas.kedditbysteps.api.RestApi
 import com.nearsoft.ccuevas.kedditbysteps.commons.RedditNews
 import com.nearsoft.ccuevas.kedditbysteps.commons.RedditNewsItem
 import io.reactivex.Observable
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by ccuevas on 11/17/17.
  */
-class NewsManager(private val api: RestApi = RestApi()) {
+@Singleton
+class NewsManager @Inject constructor(private val api: RestApi) {
 
     fun getNews(after: String, limit: String = "10"): Observable<RedditNews> {
 
