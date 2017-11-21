@@ -1,12 +1,12 @@
 package com.nearsoft.ccuevas.kedditbysteps.commons
 
-import android.support.v4.app.Fragment
+import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Created by ccuevas on 11/17/17.
  */
-open class RxBaseFragment : Fragment() {
+open class RxBaseFragment : DaggerFragment() {
 
     protected var subscriptions = CompositeDisposable()
 
@@ -17,7 +17,7 @@ open class RxBaseFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
-        if(!subscriptions.isDisposed) {
+        if (!subscriptions.isDisposed) {
             subscriptions.dispose()
         }
         subscriptions.clear()

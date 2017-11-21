@@ -1,6 +1,5 @@
 package com.nearsoft.ccuevas.kedditbysteps
 
-import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
@@ -13,7 +12,6 @@ import com.nearsoft.ccuevas.kedditbysteps.commons.RxBaseFragment
 import com.nearsoft.ccuevas.kedditbysteps.commons.adapter.NewsAdapter
 import com.nearsoft.ccuevas.kedditbysteps.commons.extencions.inflate
 import com.nearsoft.ccuevas.kedditbysteps.features.news.NewsManager
-import dagger.android.support.AndroidSupportInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.news_fragment.*
@@ -40,11 +38,6 @@ class NewsFragment : RxBaseFragment() {
                               savedInstanceState: Bundle?): View? {
 
         return container?.inflate(R.layout.news_fragment)
-    }
-
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this);
-        super.onAttach(context)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

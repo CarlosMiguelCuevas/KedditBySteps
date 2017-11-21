@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 /**
  * Created by ccuevas on 11/20/17.
@@ -14,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NetworkModule {
 
     @Provides
+    @Singleton
     fun provideRetrofitInstance(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(BuildConfig.API_URL)
