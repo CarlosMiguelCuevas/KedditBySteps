@@ -27,12 +27,12 @@ android {
                 obfuscate false
                 optimizeCode false
                 proguardFile 'proguard-rules.pro'
-                buildConfigField("String", "API_URL",  "\"https://www.reddit.com\"")
+                buildConfigField("String", "API_URL", "\"https://www.reddit.com\"")
 
             }
         }
         debug {
-            buildConfigField("String", "API_URL",  "\"https://www.reddit.com\"")
+            buildConfigField("String", "API_URL", "\"https://www.reddit.com\"")
         }
     }
 }
@@ -55,12 +55,14 @@ dependencies {
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.ext.gsonVersion" //parcer
-    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofitAdapterVersion" //adapter to use RX with retrofit
+    implementation "com.jakewharton.retrofit:retrofit2-rxjava2-adapter:$rootProject.ext.retrofitAdapterVersion"
+    //adapter to use RX with retrofit
 
     //dagger2
-    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+    implementation "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
-    compile "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
 
     //Testing
     testImplementation "junit:junit:$rootProject.ext.junitVersion"

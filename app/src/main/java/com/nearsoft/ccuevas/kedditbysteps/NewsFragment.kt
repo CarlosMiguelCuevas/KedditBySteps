@@ -30,7 +30,7 @@ class NewsFragment : RxBaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        KedditApp.newsComponent.inject(this)
+        KedditApp.appComponent.newsComponent().inject(this)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
