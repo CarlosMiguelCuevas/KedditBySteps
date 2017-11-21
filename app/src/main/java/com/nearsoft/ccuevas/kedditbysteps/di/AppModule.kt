@@ -11,14 +11,14 @@ import javax.inject.Singleton
  * Created by ccuevas on 11/20/17.
  */
 @Module
-class AppModule(val app: KedditApp) {
+class AppModule() {
 
     @Provides
     @Singleton
-    fun provideContext(): Context = app
+    fun provideContext(app: KedditApp): Context = app
 
     @Provides
     @Singleton
-    fun provideApplication(): Application = app
+    fun provideApplication(app: KedditApp): Application = app
 
 }
