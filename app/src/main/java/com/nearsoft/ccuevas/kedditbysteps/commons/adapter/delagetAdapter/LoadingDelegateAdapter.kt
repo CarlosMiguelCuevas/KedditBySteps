@@ -1,8 +1,9 @@
-package com.nearsoft.ccuevas.kedditbysteps.commons.adapter
+package com.nearsoft.ccuevas.kedditbysteps.commons.adapter.delagetAdapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.nearsoft.ccuevas.kedditbysteps.R
+import com.nearsoft.ccuevas.kedditbysteps.commons.adapter.ViewType
 import com.nearsoft.ccuevas.kedditbysteps.commons.extencions.inflate
 
 /**

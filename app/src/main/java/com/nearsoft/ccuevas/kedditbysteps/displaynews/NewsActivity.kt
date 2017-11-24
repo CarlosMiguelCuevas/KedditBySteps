@@ -1,15 +1,15 @@
-package com.nearsoft.ccuevas.kedditbysteps
+package com.nearsoft.ccuevas.kedditbysteps.displaynews
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
+import com.nearsoft.ccuevas.kedditbysteps.R
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
+import javax.inject.Named
 
-
-//import kotlinx.android.synthetic.main.activity_main.*
-
-class MainActivity : DaggerAppCompatActivity() {
+class NewsActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

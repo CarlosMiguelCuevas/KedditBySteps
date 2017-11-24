@@ -1,12 +1,14 @@
-package com.nearsoft.ccuevas.kedditbysteps.commons.adapter
+package com.nearsoft.ccuevas.kedditbysteps.displaynews.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.nearsoft.ccuevas.kedditbysteps.R
-import com.nearsoft.ccuevas.kedditbysteps.commons.RedditNewsItem
+import com.nearsoft.ccuevas.kedditbysteps.commons.adapter.ViewType
+import com.nearsoft.ccuevas.kedditbysteps.commons.adapter.delagetAdapter.ViewTypeDelegateAdapter
 import com.nearsoft.ccuevas.kedditbysteps.commons.extencions.getFriendlyTime
 import com.nearsoft.ccuevas.kedditbysteps.commons.extencions.inflate
 import com.nearsoft.ccuevas.kedditbysteps.commons.extencions.loadImage
+import com.nearsoft.ccuevas.kedditbysteps.data.newsmodels.RedditNewsItem
 import kotlinx.android.synthetic.main.news_item.view.*
 
 /**

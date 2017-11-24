@@ -1,11 +1,14 @@
 package com.nearsoft.ccuevas.kedditbysteps.di
 
-import com.nearsoft.ccuevas.kedditbysteps.api.RedditApi
-import com.nearsoft.ccuevas.kedditbysteps.api.RestApi
-import com.nearsoft.ccuevas.kedditbysteps.features.news.NewsManager
+import com.nearsoft.ccuevas.kedditbysteps.data.source.NewsDataSource
+import com.nearsoft.ccuevas.kedditbysteps.data.source.NewsManager
+import com.nearsoft.ccuevas.kedditbysteps.data.source.remote.RestApi
+import com.nearsoft.ccuevas.kedditbysteps.data.source.remote.retrofit.RedditApi
+import com.nearsoft.ccuevas.kedditbysteps.di.scopes.FragmentScope
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
+import javax.inject.Named
 
 /**
  * Created by ccuevas on 11/20/17.
@@ -13,22 +16,5 @@ import retrofit2.Retrofit
 @Module
 class NewsModule {
 
-    @Provides
-    @FragmentScope
-    fun provideRedditApi(retrofit: Retrofit): RedditApi {
-        return retrofit.create(RedditApi::class.java)
-    }
-
-    @Provides
-    @FragmentScope
-    fun provideRestApi(redditApi: RedditApi): RestApi {
-        return RestApi(redditApi)
-    }
-
-    @Provides
-    @FragmentScope
-    fun provideNewsManager(api: RestApi): NewsManager {
-        return NewsManager(api)
-    }
 
 }

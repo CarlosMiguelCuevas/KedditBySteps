@@ -1,4 +1,4 @@
-package com.nearsoft.ccuevas.kedditbysteps.di
+package com.nearsoft.ccuevas.kedditbysteps.di.scopes
 
 import javax.inject.Scope
 

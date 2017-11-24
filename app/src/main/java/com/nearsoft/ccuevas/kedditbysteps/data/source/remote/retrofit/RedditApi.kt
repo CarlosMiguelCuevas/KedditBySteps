@@ -1,6 +1,6 @@
-package com.nearsoft.ccuevas.kedditbysteps.api
+package com.nearsoft.ccuevas.kedditbysteps.data.source.remote.retrofit
 
-import com.nearsoft.ccuevas.kedditbysteps.commons.RedditNewsResponse
+import com.nearsoft.ccuevas.kedditbysteps.data.newsmodels.RedditNewsResponse
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
