@@ -27,8 +27,7 @@ class NewsFragment : DaggerFragment(), DisplayNewsContract.View {
 
     }
 
-    @Inject
-    @Named("newsListPresenter")
+    @field:[Inject Named("NewListPresenter")]
     lateinit var mPresenter: DisplayNewsContract.Presenter
 
     //views

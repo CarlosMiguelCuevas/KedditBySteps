@@ -39,8 +39,8 @@ class NewsListModule {
 
     @Provides
     @FragmentScope
-    @Named("newsListPresenter")
-    fun providePresenter(dataSource: NewsDataSource): DisplayNewsContract.Presenter {
+    @Named("NewListPresenter")
+    fun providePresenter(@Named("NewsDataSource") dataSource: NewsDataSource): DisplayNewsContract.Presenter {
         return NewsPresenter(dataSource)
     }
 

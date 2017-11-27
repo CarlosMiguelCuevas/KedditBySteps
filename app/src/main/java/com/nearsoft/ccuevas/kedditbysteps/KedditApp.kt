@@ -1,6 +1,7 @@
 package com.nearsoft.ccuevas.kedditbysteps
 
 import com.nearsoft.ccuevas.kedditbysteps.di.AppComponent
+import com.nearsoft.ccuevas.kedditbysteps.di.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 
