@@ -74,7 +74,7 @@ class NewsFragment : DaggerFragment(), DisplayNewsContract.View {
     }
 
     override fun showNews(retrievedNewsList: List<RedditNewsItem>) {
-        (newsList.adapter as NewsAdapter).addNews(retrievedNewsList)
+        (newsList.adapter as NewsAdapter).addItem(retrievedNewsList)
         newsList.visibility = View.VISIBLE
         hideLoading()
     }
