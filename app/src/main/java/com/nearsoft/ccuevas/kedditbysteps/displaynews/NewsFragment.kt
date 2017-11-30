@@ -1,6 +1,5 @@
 package com.nearsoft.ccuevas.kedditbysteps.displaynews
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import com.nearsoft.ccuevas.kedditbysteps.R
 import com.nearsoft.ccuevas.kedditbysteps.commons.InfiniteScrollListener
 import com.nearsoft.ccuevas.kedditbysteps.commons.extencions.inflate
-import com.nearsoft.ccuevas.kedditbysteps.data.newsmodels.RedditNews
 import com.nearsoft.ccuevas.kedditbysteps.data.newsmodels.RedditNewsItem
 import com.nearsoft.ccuevas.kedditbysteps.displaynews.adapter.NewsAdapter
 import dagger.android.support.DaggerFragment
@@ -35,9 +33,6 @@ class NewsFragment : DaggerFragment(), DisplayNewsContract.View {
     private val noNewsView by lazy { no_news_view }
     private val progressBar by lazy { progressbar }
 
-
-    private var redditNews: RedditNews? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -50,38 +45,21 @@ class NewsFragment : DaggerFragment(), DisplayNewsContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setAdapter()
+        initAdapter()
+        mPresenter.requestNews(savedInstanceState != null)
+    }
 
+    private fun setAdapter() {
         val linearLayout = LinearLayoutManager(context)
 
-        newsList.apply {
+        with(newsList) {
             setHasFixedSize(true)
             layoutManager = linearLayout
             clearOnScrollListeners()
-            addOnScrollListener(InfiniteScrollListener({ requestNews() }, linearLayout))
+            addOnScrollListener(InfiniteScrollListener({ mPresenter.requestNews() }, linearLayout))
         }
 
-        initAdapter()
-
-        if (savedInstanceState != null && savedInstanceState.containsKey(KEY_REDDIT_NEWS)) {
-            redditNews = savedInstanceState.get(KEY_REDDIT_NEWS) as RedditNews
-            (newsList.adapter as NewsAdapter).clearAndroidNews(redditNews!!.news)
-        } else {
-            requestNews()
-        }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-
-        val news = (newsList.adapter as NewsAdapter).getNews()
-
-        if (redditNews != null && news.size > 0) {
-            outState.putParcelable(KEY_REDDIT_NEWS, redditNews?.copy(news = news))
-        }
-    }
-
-    private fun requestNews() {
-        mPresenter.requestNews()
     }
 
     private fun initAdapter() {
@@ -95,15 +73,14 @@ class NewsFragment : DaggerFragment(), DisplayNewsContract.View {
         mPresenter.dropView()
     }
 
-    override fun onResume() {
-        super.onResume()
-        mPresenter.setView(this)
-    }
-
     override fun showNews(retrievedNewsList: List<RedditNewsItem>) {
         (newsList.adapter as NewsAdapter).addNews(retrievedNewsList)
         newsList.visibility = View.VISIBLE
         hideLoading()
+    }
+
+    override fun hideNewsList() {
+        newsList.visibility = View.GONE
     }
 
     override fun showError(error: Throwable) {
@@ -131,7 +108,4 @@ class NewsFragment : DaggerFragment(), DisplayNewsContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun hideNewsList() {
-        newsList.visibility = View.GONE
-    }
 }

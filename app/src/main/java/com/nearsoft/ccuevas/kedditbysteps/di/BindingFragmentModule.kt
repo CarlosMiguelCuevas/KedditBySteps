@@ -1,7 +1,6 @@
 package com.nearsoft.ccuevas.kedditbysteps.di
 
 import com.nearsoft.ccuevas.kedditbysteps.di.scopes.FragmentScope
-import com.nearsoft.ccuevas.kedditbysteps.displaynews.NewsActivity
 import com.nearsoft.ccuevas.kedditbysteps.displaynews.NewsFragment
 import com.nearsoft.ccuevas.kedditbysteps.displaynews.di.NewsListModule
 import dagger.Module
@@ -17,4 +16,5 @@ abstract class BindingFragmentModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = arrayOf(NewsListModule::class))
     abstract fun bindNewsFragment(): NewsFragment
+
 }

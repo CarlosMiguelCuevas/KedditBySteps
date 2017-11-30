@@ -1,4 +1,4 @@
-package com.nearsoft.ccuevas.kedditbysteps.data.source.remote.retrofit
+package com.nearsoft.ccuevas.kedditbysteps.data.source.remote.endpoints
 
 import com.nearsoft.ccuevas.kedditbysteps.data.newsmodels.RedditNewsResponse
 import io.reactivex.Observable

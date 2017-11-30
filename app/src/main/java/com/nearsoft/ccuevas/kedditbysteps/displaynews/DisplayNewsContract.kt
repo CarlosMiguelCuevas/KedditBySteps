@@ -30,10 +30,9 @@ interface DisplayNewsContract {
 
     interface Presenter : BaseContract.BasePresenter {
 
-        fun requestNews()
-
-        fun setView(view: DisplayNewsContract.View)
+        fun requestNews(requestCachedData: Boolean = false)
 
         fun dropView()
+
     }
 }
