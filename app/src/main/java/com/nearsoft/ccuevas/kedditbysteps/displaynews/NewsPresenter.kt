@@ -27,7 +27,7 @@ class NewsPresenter(private val newsRepository: RepositoryDataSource, private va
                         { error ->
                             newsView?.showError(error)
                         })
-        subscriptions.add(subscription)
+        subscribe(subscription)
     }
 
     override fun dropView() {

@@ -71,6 +71,7 @@ class NewsFragment : DaggerFragment(), DisplayNewsContract.View {
     override fun onDestroy() {
         super.onDestroy()
         mPresenter.dropView()
+        mPresenter.unSubscribe()
     }
 
     override fun showNews(retrievedNewsList: List<RedditNewsItem>) {
