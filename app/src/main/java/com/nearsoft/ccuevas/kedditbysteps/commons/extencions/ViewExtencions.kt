@@ -16,9 +16,8 @@ fun ViewGroup.inflate(layoutId: Int, attachToRoot: Boolean = false): View {
 }
 
 fun ImageView.loadImage(imageUrl: String) {
-    if (TextUtils.isEmpty(imageUrl)) {
-        Picasso.with(context).load(R.mipmap.ic_launcher).into(this)
-    } else {
+
+    if (!TextUtils.isEmpty(imageUrl)) {
         Picasso.with(context).isLoggingEnabled()
         Log.d("URL", imageUrl)
         Picasso.with(context).load(imageUrl).into(this)

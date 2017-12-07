@@ -27,7 +27,7 @@ class MockedNewsRemoteDataSource() : BaseDataSource {
     }
 
     private fun generateNews(index: Int) : RedditNewsItem {
-        return RedditNewsItem("me", "fake title ${index}", 100, 1512612965, "https://www.imagely.com/wordpress-gallery-plugin/basic-thumbnail-gallery/#gallery/80e6b6750cefe261196a6944c79deae3/739", "www.notfound.com")
+        return RedditNewsItem("me", "fake title ${index}", 100, 1512612965, "", "www.notfound.com")
     }
 
 }
