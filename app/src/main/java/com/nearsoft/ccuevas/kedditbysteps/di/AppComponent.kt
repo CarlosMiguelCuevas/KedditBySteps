@@ -12,10 +12,10 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = arrayOf(
         AndroidSupportInjectionModule::class,
+        BindingActivityModule::class,
         AppModule::class,
         DataSourceModule::class,
-        NetworkModule::class,
-        BindingActivityModule::class))
+        NetworkModule::class))
 interface AppComponent : AndroidInjector<DaggerApplication> {
 
     fun inject(application: KedditApp)

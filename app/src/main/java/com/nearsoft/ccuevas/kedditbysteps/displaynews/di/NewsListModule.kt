@@ -1,5 +1,6 @@
 package com.nearsoft.ccuevas.kedditbysteps.displaynews.di
 
+import com.nearsoft.ccuevas.kedditbysteps.commons.schedulers.SchedulerProvider
 import com.nearsoft.ccuevas.kedditbysteps.data.source.RepositoryDataSource
 import com.nearsoft.ccuevas.kedditbysteps.di.scopes.FragmentScope
 import com.nearsoft.ccuevas.kedditbysteps.displaynews.DisplayNewsContract
@@ -18,8 +19,8 @@ class NewsListModule {
     @Provides
     @FragmentScope
     @Named("NewListPresenter")
-    fun providePresenter(@Named("RepositoryDataSource") dataSource: RepositoryDataSource, view: NewsFragment): DisplayNewsContract.Presenter {
-        return NewsPresenter(dataSource, view)
+    fun providePresenter(@Named("RepositoryDataSource") dataSource: RepositoryDataSource, view: NewsFragment, schedulers: SchedulerProvider): DisplayNewsContract.Presenter {
+        return NewsPresenter(dataSource, view, schedulers)
     }
 
 }

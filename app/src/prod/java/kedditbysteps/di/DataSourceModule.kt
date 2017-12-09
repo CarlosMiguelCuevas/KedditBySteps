@@ -1,5 +1,7 @@
 package com.nearsoft.ccuevas.kedditbysteps.di
 
+import com.nearsoft.ccuevas.kedditbysteps.commons.schedulers.SchedulerProvider
+import com.nearsoft.ccuevas.kedditbysteps.commons.schedulers.SchedulerProviderProdImpl
 import com.nearsoft.ccuevas.kedditbysteps.data.source.BaseDataSource
 import com.nearsoft.ccuevas.kedditbysteps.data.source.NewsRepository
 import com.nearsoft.ccuevas.kedditbysteps.data.source.RepositoryDataSource
@@ -37,4 +39,11 @@ class DataSourceModule {
     fun provideNewsManager(@Named("RemoteNewsData") api: BaseDataSource): RepositoryDataSource {
         return NewsRepository(api)
     }
+
+    @Provides
+    @Singleton
+    fun provideScheduler(): SchedulerProvider {
+        return SchedulerProviderProdImpl()
+    }
+
 }

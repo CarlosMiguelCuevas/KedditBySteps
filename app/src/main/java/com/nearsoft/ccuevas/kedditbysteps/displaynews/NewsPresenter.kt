@@ -1,14 +1,13 @@
 package com.nearsoft.ccuevas.kedditbysteps.displaynews
 
 import com.nearsoft.ccuevas.kedditbysteps.commons.RxBasePresenter
+import com.nearsoft.ccuevas.kedditbysteps.commons.schedulers.SchedulerProvider
 import com.nearsoft.ccuevas.kedditbysteps.data.source.RepositoryDataSource
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 
 /**
  * Created by ccuevas on 11/22/17.
  */
-class NewsPresenter(private val newsRepository: RepositoryDataSource, private var newsView: DisplayNewsContract.View?) : RxBasePresenter(), DisplayNewsContract.Presenter {
+class NewsPresenter(private val newsRepository: RepositoryDataSource, private var newsView: DisplayNewsContract.View?, schedulers: SchedulerProvider) : RxBasePresenter(schedulers), DisplayNewsContract.Presenter {
 
     override
     fun requestNews(requestCachedData: Boolean) {
@@ -18,8 +17,8 @@ class NewsPresenter(private val newsRepository: RepositoryDataSource, private va
         }
 
         val subscription = newsRepository.getNews()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(schedulers.io())
+                .observeOn(schedulers.ui())
                 .subscribe(
                         { retrievedNews ->
                             newsView?.showNews(retrievedNews.news)
