@@ -18,7 +18,7 @@ class NewsRemoteDataSource(private val redditApi: RedditApi) : BaseDataSource {
                         with(newsItem.data) {
                             RedditNewsItem(author, title, num_comments, created, thumbnail, url)
                         }
-                    })
+                    } as ArrayList<RedditNewsItem>)
                 }
     }
 

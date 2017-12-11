@@ -7,7 +7,7 @@ import android.os.Parcelable
  * Created by ccuevas on 11/15/17.
  */
 
-data class RedditNews(val after: String, val before: String, val news: List<RedditNewsItem>) : Parcelable {
+data class RedditNews(var after: String, var before: String, var news: ArrayList<RedditNewsItem>) : Parcelable {
     constructor(source: Parcel) : this(
             source.readString(),
             source.readString(),

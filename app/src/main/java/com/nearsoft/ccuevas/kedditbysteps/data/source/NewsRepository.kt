@@ -15,7 +15,8 @@ class NewsRepository(private val mCache: CachedContract, private val mApi: BaseD
     fun getNews(after: String, limit: String): Observable<RedditNews> {
         if (mIsCacheDirty) {
             mIsCacheDirty = false
-            return mApi.getNews(mCache.getNews()?.after ?: "", limit).doOnNext { news -> mCache.saveNews(news) }
+            return mApi.getNews(mCache.getNews()?.after ?: "", limit)
+                    .doOnNext { news -> mCache.saveNews(news) }
         } else {
             return Observable.just(mCache.getNews())
         }

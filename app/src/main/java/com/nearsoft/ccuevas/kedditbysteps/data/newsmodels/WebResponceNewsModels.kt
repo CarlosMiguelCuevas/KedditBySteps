@@ -3,7 +3,7 @@ package com.nearsoft.ccuevas.kedditbysteps.data.newsmodels
 data class RedditNewsResponse(val data: RedditDataResponse)
 
 data class RedditDataResponse(
-        val children: List<RedditChildrenResponse>,
+        val children: ArrayList<RedditChildrenResponse>,
         val after: String?,
         val before: String?
 )
