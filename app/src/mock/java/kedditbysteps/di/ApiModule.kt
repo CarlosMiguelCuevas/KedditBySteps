@@ -14,20 +14,13 @@ import javax.inject.Singleton
  */
 
 @Module
-class DataSourceModule {
+class ApiModule {
 
     @Provides
     @Singleton
     @Named("RemoteNewsData")
     fun provideRestApi(): BaseDataSource {
         return MockedNewsRemoteDataSource()
-    }
-
-    @Provides
-    @Singleton
-    @Named("RepositoryDataSource")
-    fun provideNewsManager(@Named("RemoteNewsData") api: BaseDataSource): RepositoryDataSource {
-        return NewsRepository(api)
     }
 
 }

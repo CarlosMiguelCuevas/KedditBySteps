@@ -20,39 +20,13 @@ import javax.inject.Singleton
  */
 
 @Module
-class DataSourceModule {
-
-    @Provides
-    @Singleton
-    fun provideRedditApi(retrofit: Retrofit): RedditApi {
-        return retrofit.create(RedditApi::class.java)
-    }
+class ApiModule {
 
     @Provides
     @Singleton
     @Named("RemoteNewsData")
     fun provideRestApi(redditApi: RedditApi): BaseDataSource {
         return NewsRemoteDataSource(redditApi)
-    }
-
-    @Provides
-    @Singleton
-    @Named("NewsCachedData")
-    fun provideNewsChachedData(): CachedContract {
-        return CachedDataSource()
-    }
-
-    @Provides
-    @Singleton
-    @Named("RepositoryDataSource")
-    fun provideNewsManager(@Named("NewsCachedData") cache: CachedContract, @Named("RemoteNewsData") api: BaseDataSource): RepositoryDataSource {
-        return NewsRepository(cache, api)
-    }
-
-    @Provides
-    @Singleton
-    fun provideScheduler(): SchedulerProvider {
-        return SchedulerProviderProdImpl()
     }
 
 }
