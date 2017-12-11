@@ -5,6 +5,8 @@ import com.nearsoft.ccuevas.kedditbysteps.commons.schedulers.SchedulerProviderPr
 import com.nearsoft.ccuevas.kedditbysteps.data.source.BaseDataSource
 import com.nearsoft.ccuevas.kedditbysteps.data.source.NewsRepository
 import com.nearsoft.ccuevas.kedditbysteps.data.source.RepositoryDataSource
+import com.nearsoft.ccuevas.kedditbysteps.data.source.local.cache.CachedContract
+import com.nearsoft.ccuevas.kedditbysteps.data.source.local.cache.CachedDataSource
 import com.nearsoft.ccuevas.kedditbysteps.data.source.remote.NewsRemoteDataSource
 import com.nearsoft.ccuevas.kedditbysteps.data.source.remote.endpoints.RedditApi
 import dagger.Module
@@ -35,9 +37,16 @@ class DataSourceModule {
 
     @Provides
     @Singleton
+    @Named("NewsCachedData")
+    fun provideNewsChachedData(): CachedContract {
+        return CachedDataSource()
+    }
+
+    @Provides
+    @Singleton
     @Named("RepositoryDataSource")
-    fun provideNewsManager(@Named("RemoteNewsData") api: BaseDataSource): RepositoryDataSource {
-        return NewsRepository(api)
+    fun provideNewsManager(@Named("NewsCachedData") cache: CachedContract, @Named("RemoteNewsData") api: BaseDataSource): RepositoryDataSource {
+        return NewsRepository(cache, api)
     }
 
     @Provides
