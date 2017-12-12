@@ -5,8 +5,6 @@ import com.nearsoft.ccuevas.kedditbysteps.data.newsmodels.RedditNews
 import com.nearsoft.ccuevas.kedditbysteps.data.newsmodels.RedditNewsItem
 import com.nearsoft.ccuevas.kedditbysteps.data.source.RepositoryDataSource
 import io.reactivex.Observable
-import io.reactivex.Scheduler
-import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.schedulers.Schedulers
 import org.junit.Before
 import org.junit.Test
@@ -42,7 +40,6 @@ class NewsPresenterTest {
         MockitoAnnotations.initMocks(this)
 
         mNewsPresenter = NewsPresenter(mNewsRepository, mView, mSchedulers)
-        RxAndroidPlugins.setInitMainThreadSchedulerHandler { scheduler -> Schedulers.trampoline() }
         configureFakeData()
         Mockito.`when`(mSchedulers.ui()).thenReturn(Schedulers.trampoline())
         Mockito.`when`(mSchedulers.io()).thenReturn(Schedulers.trampoline())

@@ -7,7 +7,7 @@ import com.nearsoft.ccuevas.kedditbysteps.data.newsmodels.RedditNews
  */
 class CachedDataSource : CachedContract {
 
-    private lateinit var mCachedNews: RedditNews
+    private var mCachedNews: RedditNews
 
     init {
         mCachedNews = RedditNews("", "", ArrayList())
